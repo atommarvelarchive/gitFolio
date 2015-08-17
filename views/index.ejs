@@ -21,7 +21,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="A front-end template that helps you build fast, modern mobile web apps.">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Material Design Lite</title>
+    <title>atommarvel.com</title>
 
     <!-- Add to homescreen for Chrome on Android -->
     <meta name="mobile-web-app-capable" content="yes">
@@ -44,31 +44,42 @@
 
     <link href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="css/material.min.css">
+    <link rel="stylesheet" href="css/material.css">
     <link rel="stylesheet" href="css/styles.css">
-    <style>
-    #view-source {
-      position: fixed;
-      display: block;
-      right: 0;
-      bottom: 0;
-      margin-right: 40px;
-      margin-bottom: 40px;
-      z-index: 900;
-    }
-    </style>
   </head>
   <body>
-    <div class="top"></div>
-    <div class="demo-blog mdl-layout mdl-js-layout has-drawer is-upgraded">
-      <main class="mdl-layout__content"></main>
-      <div class="mdl-layout__obfuscator"></div>
-    </div>
+            <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+              <header class="mdl-layout__header">
+                <div class="mdl-layout__header-row">
+                  <span class="mdl-layout-title">Atom Marvel Raiff</span>
+                  <div class="mdl-layout-spacer"></div>
+                  <nav class="mdl-navigation mdl-layout--large-screen-only">
+                    <a class="mdl-navigation__link" href="https://www.linkedin.com/in/atommarvel" target="_blank">Software Engineer <img src="/img/linkedin.png"/></a>
+                    <a class="mdl-navigation__link" href="https://www.youtube.com/watch?v=KMRKVeCyoFY" target="_blank">Dancer <img src="/img/youtube.png"/></a>
+                    <a class="mdl-navigation__link" href="http://atomdatum.tumblr.com/" target="_blank">Musician <img src="/img/tumblr.png"/></a>
+                    <a class="mdl-navigation__link" href="https://facebook.com/atommarvel" target="_blank">Person <img src="/img/facebook.png"/></a>
+                  </nav>
+                </div>
+              </header>
+                <div class="mdl-layout__drawer">
+                <span class="mdl-layout-title">Atom Marvel Raiff</span>
+                <nav class="mdl-navigation">
+                    <a class="mdl-navigation__link" href="https://www.linkedin.com/in/atommarvel" target="_blank">Software Engineer <img src="/img/linkedin.png"/></a>
+                    <a class="mdl-navigation__link" href="https://www.youtube.com/watch?v=KMRKVeCyoFY" target="_blank">Dancer <img src="/img/youtube.png"/></a>
+                    <a class="mdl-navigation__link" href="http://atomdatum.tumblr.com/" target="_blank">Musician <img src="/img/tumblr.png"/></a>
+                    <a class="mdl-navigation__link" href="https://facebook.com/atommarvel" target="_blank">Person <img src="/img/facebook.png"/></a>
+                </nav>
+              </div>
+              <main class="mdl-layout__content">
+                <div class="page-content"></div>
+              </main>
+            </div>
     <script src="js/material.min.js"></script>
     <script src="js/marked.js"></script>
     <script src="js/transform.js"></script>
     <script src="js/react.js"></script>
-    <script type="text/jsx" src="js/gitfolio.jsx"></script>
+    <script type="text/jsx" src="js/renderer.jsx"></script>
+    <script src="js/gitfolio.js"></script>
   </body>
   <script>
     Array.prototype.forEach.call(document.querySelectorAll('.mdl-card__media'), function(el) {

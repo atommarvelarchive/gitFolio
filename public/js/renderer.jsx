@@ -1,39 +1,3 @@
-globalRepos = [];
-sizesArray = [];
-var baseURL = "http://api.github.com/users/";
-var rawURL = "https://raw.githubusercontent.com/";
-
-function getRepos(username, callback){
-    var reqURL = baseURL+username+"/repos";
-    var xhr = new XMLHttpRequest();
-    xhr.open("GET", reqURL, true);
-    xhr.onreadystatechange = function () {
-        if (4 !== xhr.readyState || 200 !== xhr.status) {
-            return;
-        }
-        callback(JSON.parse(xhr.responseText));
-    };
-    xhr.send();
-}
-
-function getRawURL(repo, file){
-    return rawURL+repo.full_name+"/master/"+file;
-}
-
-function getReadme(repo, callback){
-    var reqURL = getRawURL(repo, "README.md");
-    var xhr = new XMLHttpRequest();
-    xhr.open("GET", reqURL, true);
-    xhr.onreadystatechange = function () {
-        if (4 !== xhr.readyState || 200 !== xhr.status) {
-            return;
-        }
-        callback(xhr.responseText);
-    };
-    xhr.send();
-}
-
-
 var RepoCard = React.createClass({
     render: function(){
         var self = this;
@@ -69,7 +33,7 @@ var RepoCard = React.createClass({
                 <div className="demo-blog__posts mdl-grid">
                     <MdViewer md={md} repo={self.props.repo}/>
                 </div>),
-                document.querySelector(".mdl-layout__content"));
+                document.querySelector(".gitfolio"));
         });
     }
 });
@@ -80,8 +44,13 @@ var CardGrid = React.createClass({
             return <RepoCard repo={repo} size={sizesArray[index]} key={index}/>;
         }
         return (
-            <div className="demo-blog__posts mdl-grid">
-                {this.props.repos.map(getCard)}
+            <div className="demo-blog mdl-layout mdl-js-layout has-drawer is-upgraded">
+              <main className="mdl-layout__content">
+                <div className="demo-blog__posts mdl-grid">
+                    {this.props.repos.map(getCard)}
+                </div>
+              </main>
+              <div className="mdl-layout__obfuscator"></div>
             </div>
         );
     },
@@ -109,29 +78,48 @@ var MdViewer = React.createClass({
         );
     },
     exit: function(){
-        React.render( <CardGrid repos={globalRepos} scrollToRepo={this.props.repo}/>, document.querySelector(".mdl-layout__content"));
+        React.render( <CardGrid repos={globalRepos} scrollToRepo={this.props.repo}/>, document.querySelector(".gitfolio"));
     },
     componentDidMount: function() {
         this.getDOMNode().scrollIntoView();
     }
 });
 
-function createSizesArray(count){
-    for(var i = 0; i < count; i++){
-        var rand = Math.random();
-        var size = 6;
-        if(rand < .33){
-            size = 4;
-        } else if(rand < .66){
-            size = 5;
-        }
-        sizesArray.push(size);
+    
+var AtomAnimation = React.createClass({
+    render: function(){
+        return (
+            <div className="atom">
+                <div className="atom-ring">
+                    <img src="/img/spin.png"/>
+                </div>
+                <div className="atom-ring">
+                    <img src="/img/spin.png"/>
+                </div>
+            </div>
+        );
     }
-}
-
-getRepos("atommarvel", function(repos){
-    globalRepos = repos;
-    createSizesArray(repos.length);
-    React.render( <CardGrid repos={repos}/>, document.querySelector(".mdl-layout__content"));
-    console.log(repos);
 });
+var Hello = React.createClass({
+    render: function(){
+        return (
+            <div className="flexContainer">
+                    <AtomAnimation />
+                    <p> </p>
+                    <p> <a href="#" onClick={this.showGitFolio}> Check out my projects</a>  </p>
+                    <div className="gitfolio"></div>
+            </div>
+        );
+    },
+    showGitFolio: function(){
+        getRepos("atommarvel", function(repos){
+            globalRepos = repos;
+            createSizesArray(repos.length);
+            React.render( <CardGrid repos={repos}/>, document.querySelector(".gitfolio"));
+        });
+    }
+});
+
+
+
+React.render( <Hello/>, document.querySelector(".page-content"));
