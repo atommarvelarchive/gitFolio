@@ -66,6 +66,7 @@ body .demo-blog {
           flex-grow: 1;
 }
 .demo-blog .mdl-card__media {
+  height: 280px;
   box-sizing: border-box;
   background-size: cover;
   /*padding: 24px;*/
@@ -191,9 +192,6 @@ body .demo-blog {
       -ms-flex-order: -1;
           order: -1;
 }
-.demo-blog .coffee-pic .mdl-card__media {
-  background-image: url('/img/coffee.jpg');
-}
 .demo-blog .something-else .mdl-card__media {
   display: -webkit-box;
   display: -webkit-flex;
@@ -303,10 +301,6 @@ body .demo-blog {
 }
 .demo-blog--blogpost .custom-header {
   background-color: transparent;
-}
-.demo-blog--blogpost .demo-blog__posts > .mdl-card .mdl-card__media {
-  background-image: url('/img/road_big.jpg');
-  height: 280px;
 }
 .demo-blog--blogpost .comments {
   background-color: #EEE;
@@ -623,4 +617,7 @@ body .demo-blog {
 }
 .mdl-navigation__link > img {
     width: 20px;
+}
+.bio {
+    margin-top: 24px;
 }

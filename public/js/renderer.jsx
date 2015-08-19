@@ -8,13 +8,18 @@ var RepoCard = React.createClass({
         previewImg = {
             backgroundImage: "url(" + "'https://raw.githubusercontent.com/"+this.props.repo.full_name+"/master/preview.png')"
         };
+        if(this.props.repo.fork){
+            return <div style={{display: "none"}}> </div>;
+        }
         return (
             <div className={getCardClasses()}>
-                <div className="mdl-card__media mdl-color-text--grey-50" data-repo-id={this.props.repo.id} style={previewImg}>
+                <a href={this.props.repo.html_url} >
+                <div className="mdl-card__media mdl-color-text--grey-50" data-repo-id={this.props.repo.id} style={previewImg} >
                     <div style={{background: "rgba(0, 0, 0, 0.2)", width: "100%"}}>
                         <h3 style={{paddingBottom: "24px", paddingLeft: "24px"}}> {this.props.repo.name} </h3>
                     </div>
                 </div>
+                </a>
                 <div className="mdl-color-text--grey-600 mdl-card__supporting-text">
                     {this.props.repo.description}
                 </div>
@@ -35,6 +40,9 @@ var RepoCard = React.createClass({
                 </div>),
                 document.querySelector(".gitfolio"));
         });
+    },
+    openRepo: function(){
+        window.location = this.props.repo.html_url;
     }
 });
 
@@ -105,8 +113,10 @@ var Hello = React.createClass({
         return (
             <div className="flexContainer">
                     <AtomAnimation />
-                    <p> </p>
-                    <p> <a href="#" onClick={this.showGitFolio}> Check out my projects</a>  </p>
+                    <p className="bio" > I'm a Software Engineer at Yahoo.</p><p>I am an <a target="_blank" href="http://yahooeap.tumblr.com/post/101373346215/welcome-to-the-yahoo-associate-engineer-tumblr">Engineering Associate</a>, and I work on <a target="_blank" href="https://play.google.com/store/apps/details?id=com.tul.aviate">Aviate</a>.</p>
+                    <a className="mdl-button mdl-button--raised mdl-js-button mdl-js-ripple-effect" onClick={this.showGitFolio}>
+                        Check out my projects
+                    </a>
                     <div className="gitfolio"></div>
             </div>
         );
