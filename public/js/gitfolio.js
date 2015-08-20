@@ -4,7 +4,7 @@ var baseURL = "http://api.github.com/users/";
 var rawURL = "https://raw.githubusercontent.com/";
 
 function getRepos(username, callback){
-    var reqURL = baseURL+username+"/repos";
+    var reqURL = baseURL+username+"/repos?sort=pushed";
     var xhr = new XMLHttpRequest();
     xhr.open("GET", reqURL, true);
     xhr.onreadystatechange = function () {
